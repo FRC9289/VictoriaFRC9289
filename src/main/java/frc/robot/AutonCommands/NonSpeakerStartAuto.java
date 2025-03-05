@@ -2,8 +2,6 @@ package frc.robot.AutonCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.SubsystemCommands.SwerveDriveCommands;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Roller;
 
 public class NonSpeakerStartAuto extends SequentialCommandGroup{
     

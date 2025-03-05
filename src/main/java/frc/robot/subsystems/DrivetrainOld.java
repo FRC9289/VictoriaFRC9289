@@ -4,12 +4,9 @@
 
 package frc.robot.subsystems;
 
-import static edu.wpi.first.units.Units.Degrees;
-
 import java.text.DecimalFormat;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
-// import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.filter.SlewRateLimiter;
