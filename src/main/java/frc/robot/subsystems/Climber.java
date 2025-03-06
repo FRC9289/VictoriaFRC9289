@@ -5,6 +5,7 @@ import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MotorMiscConstants;
 
 
 //Imma treat Climber like an human arm
@@ -15,21 +16,12 @@ public class Climber extends SubsystemBase {
     public SparkMax climberMotorWrist;
     public SparkMax climberMotorHand;
 
-    public final int SPARKMAX_ID_SHOULDER;
-    public final int SPARKMAX_ID_ELBOW;
-    public final int SPARKMAX_ID_WRIST;
-    public final int SPARKMAX_ID_HAND;
-
     public Climber() {
-        SPARKMAX_ID_SHOULDER = 14;
-        SPARKMAX_ID_ELBOW = 15;
-        SPARKMAX_ID_WRIST = 16;
-        SPARKMAX_ID_HAND = 0;
 
-        climberMotorShoulder = new SparkMax(SPARKMAX_ID_SHOULDER, MotorType.kBrushless);
-        climberMotorElbow = new SparkMax(SPARKMAX_ID_ELBOW, MotorType.kBrushless);
-        climberMotorHand = new SparkMax(SPARKMAX_ID_HAND, MotorType.kBrushless);
-        climberMotorWrist = new SparkMax(SPARKMAX_ID_WRIST, MotorType.kBrushless);
+        climberMotorShoulder = new SparkMax(MotorMiscConstants.SHOULDER_CLIMBER_ID, MotorType.kBrushless);
+        climberMotorElbow = new SparkMax(MotorMiscConstants.ELBOW_CLIMBER_ID, MotorType.kBrushless);
+        climberMotorHand = new SparkMax(MotorMiscConstants.HAND_CLIMBER_ID, MotorType.kBrushless);
+        climberMotorWrist = new SparkMax(MotorMiscConstants.WRIST_CLIMBER_ID, MotorType.kBrushless);
     }
 
     public void move_shoulder(double speed){
@@ -50,10 +42,10 @@ public class Climber extends SubsystemBase {
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Climber Motor Shoulder "+SPARKMAX_ID_SHOULDER, climberMotorShoulder.get());
-        SmartDashboard.putNumber("Climber Motor Elbow "+SPARKMAX_ID_ELBOW, climberMotorElbow.get());
-        SmartDashboard.putNumber("Climber Motor Wrist "+SPARKMAX_ID_WRIST, climberMotorWrist.get());
-        SmartDashboard.putNumber("Climber Motor Hand "+SPARKMAX_ID_HAND, climberMotorHand.get());
+        SmartDashboard.putNumber("Climber Motor Shoulder "+MotorMiscConstants.SHOULDER_CLIMBER_ID, climberMotorShoulder.get());
+        SmartDashboard.putNumber("Climber Motor Elbow "+MotorMiscConstants.ELBOW_CLIMBER_ID, climberMotorElbow.get());
+        SmartDashboard.putNumber("Climber Motor Wrist "+MotorMiscConstants.HAND_CLIMBER_ID, climberMotorWrist.get());
+        SmartDashboard.putNumber("Climber Motor Hand "+MotorMiscConstants.WRIST_CLIMBER_ID, climberMotorHand.get());
     }
 }
 
