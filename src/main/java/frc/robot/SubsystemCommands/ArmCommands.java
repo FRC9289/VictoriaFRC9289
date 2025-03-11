@@ -1,7 +1,8 @@
 package frc.robot.SubsystemCommands;
 
-import frc.robot.subsystems.Arm;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Arm;
 
 public class ArmCommands extends Command {
     Arm arm;
@@ -13,12 +14,15 @@ public class ArmCommands extends Command {
         addRequirements(arm);
     }
 
+    @Override
     public void execute() {
         arm.move(power);
     }
     public void execute45() {
         ArmCommands move = new ArmCommands(power, arm);
-        move.withTimeout(null);
+        move.execute();
+        Timer.delay(2);
+        move.stop();
     }
 
     public void stop() {
