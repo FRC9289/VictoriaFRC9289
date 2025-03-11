@@ -36,6 +36,7 @@ public class SwerveModuleOld extends SubsystemBase {
   private double absoluteEncoderOffset;
 
   private int driveID = 0;
+  private int turnID = 0;
 
   private Rotation2d lastAngle;
 
@@ -47,6 +48,8 @@ public class SwerveModuleOld extends SubsystemBase {
 
       driveID = driveMotorId;
       absoluteEncoder = new CANcoder(absoluteEncoderId);
+
+      turnID = turnMotorId;
 
       driveMotor = new VikingSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed);
       turnMotor = new VikingSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
@@ -65,8 +68,9 @@ public class SwerveModuleOld extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Drive Distance (rot) - Motor: " + driveID, getDriveMotorPosition());
-    SmartDashboard.putNumber("Wheel Position (rot) - Motor: " + driveID, getTurnMotorPosition());
+    SmartDashboard.putNumber("Wheel Position (rot) - Motor: " + turnID, getTurnMotorPosition());
     SmartDashboard.putNumber("Absolute Wheel Angle (deg) - Motor: " + driveID, absoluteEncoder.getAbsolutePosition().getValueAsDouble());
+    SmartDashboard.putNumber("Vels - Motor: " + driveID, getDriveMotorVelocity()); 
     
   }
 
