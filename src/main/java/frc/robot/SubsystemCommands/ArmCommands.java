@@ -16,6 +16,10 @@ public class ArmCommands extends Command {
     public void execute() {
         arm.move(power);
     }
+    public void execute45() {
+        ArmCommands move = new ArmCommands(power, arm);
+        move.withTimeout(null);
+    }
 
     public void stop() {
         arm.move(0);
