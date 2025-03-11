@@ -18,16 +18,19 @@ public class ArmMethods extends Command {
     @Override
     public void execute() {
         if (button.getRawButton(CommandConstants.ButtonShoulderL)) {
-            ArmCommands command = new ArmCommands(.1, arm);
-            command.execute();
+            ArmCommands cmd = new ArmCommands(.1, arm);
+            cmd.execute();
         }
         else if (button.getRawButton(CommandConstants.ButtonShoulderR)) {
-            ArmCommands command = new ArmCommands(-.1, arm);
-            command.execute();
+            ArmCommands cmd = new ArmCommands(-.1, arm);
+            cmd.execute();
+       /* } else if (button.getRawButton(CommandConstants.ButtonShoulderL)) {
+            ArmCommands cmd = new ArmCommands(0.1, arm);
+            cmd.execute45(); */
         }
         else{
-            ArmCommands command = new ArmCommands(-.03, arm);
-            command.execute();
+            ArmCommands cmd = new ArmCommands(-.01, arm);
+            cmd.execute();
         }
     }
 }
