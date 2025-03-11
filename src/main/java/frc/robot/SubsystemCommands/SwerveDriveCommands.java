@@ -36,7 +36,7 @@ public class SwerveDriveCommands extends Command {
         drive, 
         turn, 
         rotate,
-        !RobotContainer.driverController.getRawButton(CommandConstants.ButtonA),
+        true,
         new Translation2d(),
         true);
   }

@@ -9,6 +9,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import frc.robot.Constants.MotorMiscConstants;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,7 +19,7 @@ public class Hang extends SubsystemBase {
 
 
     //Define Motor Constructor
-    private SparkMax hangMotor12 = new SparkMax(12, MotorType.kBrushless);
+    private SparkMax hangMotor12 = new SparkMax(MotorMiscConstants.HANG_MOTOR_ID, MotorType.kBrushless);
 
     public Hang(){
         SparkMaxConfig config = new SparkMaxConfig();

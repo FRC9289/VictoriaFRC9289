@@ -21,6 +21,17 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  public static class MotorMiscConstants {
+    
+    public static final int ROLLER_MOTOR_ID = 10;
+    public static final int HANG_MOTOR_ID = 12;
+
+    public static final int SHOULDER_CLIMBER_ID = 14;
+    public static final int ELBOW_CLIMBER_ID = 15;
+    public static final int WRIST_CLIMBER_ID = 16;
+    public static final int HAND_CLIMBER_ID = 17;
+
+  }
   public static class IOConstants {
     public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int OP_CONTROLLER_PORT = 1;
