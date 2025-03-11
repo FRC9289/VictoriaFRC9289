@@ -21,7 +21,7 @@ public class ArmCommands extends Command {
     public void execute45() {
         ArmCommands move = new ArmCommands(power, arm);
         move.execute();
-        Timer.delay(2);
+        Timer.delay(1);
         move.stop();
     }
 

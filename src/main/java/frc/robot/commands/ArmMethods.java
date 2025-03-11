@@ -24,7 +24,7 @@ public class ArmMethods extends Command {
             ArmCommands cmd = new ArmCommands(-.1, arm);
             cmd.execute();
         } else if (button.getRawButton(CommandConstants.ButtonRightStick)) {
-            ArmCommands cmd = new ArmCommands(-.1, arm);
+            ArmCommands cmd = new ArmCommands(.1, arm);
             cmd.execute45();
         } else {
             ArmCommands cmd = new ArmCommands(-.03, arm);
