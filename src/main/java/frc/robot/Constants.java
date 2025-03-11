@@ -60,8 +60,8 @@ public final class Constants {
     public static final double TURN_MOTOR_VCONVERSION = TURN_MOTOR_PCONVERSION / 60.0;
     public static final double KP_TURNING = 0.5;
 
-    public static final double DRIVETRAIN_MAX_SPEED = 1.0;
-    public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
+    public static final double DRIVETRAIN_MAX_SPEED = 0.50;
+    public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 0.75 * Math.PI;
 
     //Swerve Kinematics
     public static final double TRACK_WIDTH = Units.inchesToMeters(20.75);
