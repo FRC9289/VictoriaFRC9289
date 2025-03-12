@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class RollerMethods extends Command {
     Roller roller;
     Joystick button;
+    int flip = 1;
 
     public RollerMethods(Roller roller, Joystick button) {
         this.roller = roller;
@@ -20,12 +21,22 @@ public class RollerMethods extends Command {
         if (button.getRawButton(CommandConstants.ButtonB)) {
             RollerCommands command = new RollerCommands(.3, roller);
             command.execute();
-        }
-        else if (button.getRawButton(CommandConstants.ButtonA)) {
+        } else if (button.getRawAxis(CommandConstants.AxisLeftTrigger) > CommandConstants.TriggerThreshold) {
+            RollerCommands command = new RollerCommands(flip * button.getRawAxis(CommandConstants.AxisLeftTrigger), roller);
+            command.execute();
+        } else if (button.getRawButton(CommandConstants.ButtonShoulderL)) {
+            RollerCommands command = new RollerCommands(.3, roller);
+            command.execute();
+        } else if (button.getRawButton(CommandConstants.ButtonA)) {
             RollerCommands command = new RollerCommands(-.3, roller);
             command.execute();
-        }
-        else{
+        } else if (button.getRawAxis(CommandConstants.AxisRightTrigger) > CommandConstants.TriggerThreshold) {
+            RollerCommands command = new RollerCommands(-1 * flip * button.getRawAxis(CommandConstants.AxisRightTrigger), roller);
+            command.execute();
+        } else if (button.getRawButton(CommandConstants.ButtonShoulderR)) {
+            RollerCommands command = new RollerCommands(-.3, roller);
+            command.execute();
+        } else {
             RollerCommands command = new RollerCommands(0, roller);
             command.execute();
         }

@@ -24,13 +24,11 @@ public class RobotContainer {
   //Define Subsystems & Commands
   // private static final Chassis _chassis = Chassis.returnInstance();
   public static final Joystick driverController = new Joystick(0);
-  public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonBack);
-  // private final ArmShooter _shooter = new ArmShooter();
+  public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
   private static Arm arm = new Arm();
   private static Roller roller = new Roller();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
-  // private final tankSwerve tankSwerve = new tankSwerve();
   //initializating commands to put up as choices
   //old code
   private final Command leftCommand = new LeftStartAuto(roller, arm);

@@ -3,7 +3,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.SubsystemCommands.ArmCommands;
-import frc.robot.SubsystemCommands.RollerCommands;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Roller;
 
@@ -28,7 +27,7 @@ public class ArmMethods extends Command {
         } else if (button.getRawButton(CommandConstants.ButtonShoulderR)) {
             ArmCommands cmd = new ArmCommands(-.1, arm);
             cmd.execute();
-        } else if (button.getRawButton(CommandConstants.ButtonRightStick)) {
+        } else if (button.getRawButton(CommandConstants.PovDown)) {
             ArmCommands cmd = new ArmCommands(.1, arm);
             cmd.execute45();
         } else {
