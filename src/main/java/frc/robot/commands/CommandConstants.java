@@ -25,6 +25,9 @@ public final class CommandConstants {
     public static final int AxisRightStickX = 4;
     public static final int AxisRightStickY = 5;
 
+    // Gamepad Trigger Threshold
+    public static final double TriggerThreshold = 0.1;
+
     // Gamepad POVs
     public static final int PovUp = 0;
     public static final int PovRight = 90;

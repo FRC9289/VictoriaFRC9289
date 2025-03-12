@@ -70,8 +70,7 @@ public class SwerveModuleOld extends SubsystemBase {
     SmartDashboard.putNumber("Drive Distance (rot) - Motor: " + driveID, getDriveMotorPosition());
     SmartDashboard.putNumber("Wheel Position (rot) - Motor: " + turnID, getTurnMotorPosition());
     SmartDashboard.putNumber("Absolute Wheel Angle (deg) - Motor: " + driveID, absoluteEncoder.getAbsolutePosition().getValueAsDouble());
-    SmartDashboard.putNumber("Vels - Motor: " + driveID, getDriveMotorVelocity()); 
-    
+    SmartDashboard.putNumber("Vels - Motor: " + driveID, getDriveMotorVelocity());
   }
 
   public void setBrake(boolean brake){

@@ -18,11 +18,11 @@ public class RollerMethods extends Command {
     @Override
     public void execute() {
         if (button.getRawButton(CommandConstants.ButtonB)) {
-            RollerCommands command = new RollerCommands(.2, roller);
+            RollerCommands command = new RollerCommands(.3, roller);
             command.execute();
         }
         else if (button.getRawButton(CommandConstants.ButtonA)) {
-            RollerCommands command = new RollerCommands(-.2, roller);
+            RollerCommands command = new RollerCommands(-.3, roller);
             command.execute();
         }
         else{
@@ -31,7 +31,6 @@ public class RollerMethods extends Command {
         }
     }
 }
-
 /*
- * Created by Aditya-2204
+ * Created by Aditya-2204 & Wolfram121
  */

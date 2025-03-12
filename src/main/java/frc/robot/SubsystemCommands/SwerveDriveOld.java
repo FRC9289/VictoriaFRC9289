@@ -12,6 +12,7 @@ import frc.robot.subsystems.DrivetrainOld;
 
 public class SwerveDriveOld extends Command {
   private DrivetrainOld drivetrain = DrivetrainOld.getInstance();
+  private boolean wolfbool = false;
 
   /** Creates a new SwerveDrive. */
   public SwerveDriveOld() {
@@ -26,11 +27,16 @@ public class SwerveDriveOld extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftTrigger) > CommandConstants.TriggerThreshold) {
+      wolfbool = true;
+    } else {
+      wolfbool = false;
+    }
     drivetrain.swerveDrive(
         RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY), 
         RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX), 
         RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX),
-        !RobotContainer.driverController.getRawButton(CommandConstants.ButtonA),
+        !wolfbool,
         new Translation2d(),
         true);
   }
