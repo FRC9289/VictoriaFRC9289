@@ -22,19 +22,19 @@ public class RollerMethods extends Command {
             RollerCommands command = new RollerCommands(.3, roller);
             command.execute();
         } else if (button.getRawAxis(CommandConstants.AxisLeftTrigger) > CommandConstants.TriggerThreshold) {
-            RollerCommands command = new RollerCommands(flip * button.getRawAxis(CommandConstants.AxisLeftTrigger), roller);
+            RollerCommands command = new RollerCommands(-1 * button.getRawAxis(CommandConstants.AxisLeftTrigger), roller);
             command.execute();
         } else if (button.getRawButton(CommandConstants.ButtonShoulderL)) {
-            RollerCommands command = new RollerCommands(.3, roller);
+            RollerCommands command = new RollerCommands(-.3, roller);
             command.execute();
         } else if (button.getRawButton(CommandConstants.ButtonA)) {
             RollerCommands command = new RollerCommands(-.3, roller);
             command.execute();
         } else if (button.getRawAxis(CommandConstants.AxisRightTrigger) > CommandConstants.TriggerThreshold) {
-            RollerCommands command = new RollerCommands(-1 * flip * button.getRawAxis(CommandConstants.AxisRightTrigger), roller);
+            RollerCommands command = new RollerCommands(button.getRawAxis(CommandConstants.AxisRightTrigger), roller);
             command.execute();
         } else if (button.getRawButton(CommandConstants.ButtonShoulderR)) {
-            RollerCommands command = new RollerCommands(-.3, roller);
+            RollerCommands command = new RollerCommands(.3, roller);
             command.execute();
         } else {
             RollerCommands command = new RollerCommands(0, roller);
