@@ -7,17 +7,20 @@ import frc.robot.SubsystemCommands.SwerveDriveCommands;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Roller;
 
+
 public class MiddleStartAuto extends SequentialCommandGroup{
     final double shooterSpeed = 1;
 
     public MiddleStartAuto(Roller roller, Arm arm)
     {
         addCommands(
-            new SwerveDriveCommands(0, 0, .2).withTimeout(.95),
-            new SwerveDriveCommands(-.2, 0, 0).withTimeout(6),
-            new ArmCommands(-.05, arm).withTimeout(3),
+            new SwerveDriveCommands(0, 0, 0.3).withTimeout(1.465),
+            new SwerveDriveCommands(0.2, 0, 0).withTimeout(4),
+            //new SwerveDriveCommands(0, 0.2, 0).withTimeout(1),
+            new SwerveDriveCommands(0,0,0).withTimeout(1),
             new RollerCommands(-.2, roller).withTimeout(5)
         );
-        //shoot, then either go straight or vee]=r slightly right then left
+        //Rotate, then drive forward, strafe, and outtake
+        //Aarav Arora
     }
 }
