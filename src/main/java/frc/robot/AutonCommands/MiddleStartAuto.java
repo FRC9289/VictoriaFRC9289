@@ -14,7 +14,7 @@ public class MiddleStartAuto extends SequentialCommandGroup{
     public MiddleStartAuto(Roller roller, Arm arm)
     {
         addCommands(
-            new SwerveDriveCommands(0, 0, 0.3).withTimeout(1.465),
+            new SwerveDriveCommands(0, 0, 0.3).withTimeout(2.912),
             new SwerveDriveCommands(0.2, 0, 0).withTimeout(4),
             //new SwerveDriveCommands(0, 0.2, 0).withTimeout(1),
             new SwerveDriveCommands(0,0,0).withTimeout(1),
