@@ -23,5 +23,3 @@ public class HangCommands extends Command {
      hangMotor.move(power);
    }
 }
-
-

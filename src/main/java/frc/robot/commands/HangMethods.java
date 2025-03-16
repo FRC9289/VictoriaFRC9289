@@ -12,7 +12,6 @@ public class HangMethods extends Command {
     Hang _hanger;
     Joystick _joystick;
 
-    
     public HangMethods(Hang _hanger, Joystick _controller) {
         //Construct Attributes
         this._hanger = _hanger;
@@ -26,12 +25,12 @@ public class HangMethods extends Command {
         //Set speeds and directions based on button press
         if(_joystick.getRawButton(CommandConstants.ButtonX))
         {
-            HangCommands _command = new HangCommands(_hanger, .2);
+            HangCommands _command = new HangCommands(_hanger, -.7);
             _command.execute();
         }
         else if(_joystick.getRawButton(CommandConstants.ButtonY))
         {
-            HangCommands _command = new HangCommands(_hanger, -.7);
+            HangCommands _command = new HangCommands(_hanger, .2);
             _command.execute();
         }
         else
@@ -41,4 +40,3 @@ public class HangMethods extends Command {
         }
     }
 }
-

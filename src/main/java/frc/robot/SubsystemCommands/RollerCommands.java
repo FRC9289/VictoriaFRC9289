@@ -19,6 +19,5 @@ public class RollerCommands extends Command{
 
     public void stop() {
         roller.move(0);
-    } 
-
+    }
 }

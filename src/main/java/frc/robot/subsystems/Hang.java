@@ -34,7 +34,6 @@ public class Hang extends SubsystemBase {
             .pid(1.0, 0.0, 0.0);
             
         hangMotor12.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        
     }
     public void move(double speed){
         hangMotor12.set(speed);
