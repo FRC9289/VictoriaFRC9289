@@ -42,34 +42,34 @@ public class SwerveDriveOld extends Command {
     double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
     double turnSpeedOutput = turnSpeedInput;
 
-    if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovUp)) {
+    if (RobotContainer.driverController.getPOV() == CommandConstants.PovUp) {
       drivetrain.swerveDrive(
-          1,
+          0.5,
           0,
           0,
           !fieldOriented,
           new Translation2d(),
           false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovRight)) {
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovRight) {
       drivetrain.swerveDrive(
           0,
-          1,
+          0.5,
           0,
           !fieldOriented,
           new Translation2d(),
           false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovDown)) {
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovDown) {
       drivetrain.swerveDrive(
-          -1,
+          -0.5,
           0,
           0,
           !fieldOriented,
           new Translation2d(),
           false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovLeft)) {
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovLeft) {
       drivetrain.swerveDrive(
           0,
-          -1,
+          -0.5,
           0,
           !fieldOriented,
           new Translation2d(),
