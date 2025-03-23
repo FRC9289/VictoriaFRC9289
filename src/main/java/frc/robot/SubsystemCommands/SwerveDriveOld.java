@@ -28,6 +28,61 @@ public class SwerveDriveOld extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
+    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX);
+    double turnSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
+
+    //deadband
+    frontSpeedInput = Math.abs(frontSpeedInput) < 0.1 ? 0 : frontSpeedInput;
+    sideSpeedInput = Math.abs(sideSpeedInput) < 0.1 ? 0 : sideSpeedInput;
+    turnSpeedInput = Math.abs(turnSpeedInput) < 0.1 ? 0 : turnSpeedInput;
+
+    //Square scaling
+    double frontSpeedOutput = Math.copySign(frontSpeedInput * frontSpeedInput, frontSpeedInput);
+    double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
+    double turnSpeedOutput = turnSpeedInput;
+
+    if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovUp)) {
+      drivetrain.swerveDrive(
+          1,
+          0,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovRight)) {
+      drivetrain.swerveDrive(
+          0,
+          1,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovDown)) {
+      drivetrain.swerveDrive(
+          -1,
+          0,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovLeft)) {
+      drivetrain.swerveDrive(
+          0,
+          -1,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else {
+      drivetrain.swerveDrive(
+          frontSpeedOutput,
+          sideSpeedOutput,
+          turnSpeedOutput,
+          fieldOriented,
+          new Translation2d(),
+          true);
+    }
     double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY) * .5;
     double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX) * .5;
     double turnSpeedOutput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX) * .5;

@@ -112,6 +112,7 @@ public class DrivetrainOld extends SubsystemBase {
       getModulePositions(),
       new Pose2d());
 
+<<<<<<< HEAD
     AutoBuilder.configure(
             this::getPose, // Robot pose supplier
             this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -135,6 +136,16 @@ public class DrivetrainOld extends SubsystemBase {
             },
             this // Reference to this subsystem to set requirements
     );
+=======
+    AutoBuilder.configureHolonomic(
+      this::getPose,
+      this::resetPose,
+      this::getRobotRelativeSpeeds,
+      this::driveRobotRelative,
+      SwerveConstants.AUTO_CONFIG,
+      () -> isRedAlliance(),
+      this);
+>>>>>>> f2da2401ffd295eeb1148b8409b02a7b5af78006
   }
 
   @Override
