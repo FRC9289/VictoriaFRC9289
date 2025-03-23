@@ -28,16 +28,14 @@ public class SwerveDriveOld extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
-    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
-    double turnSpeedOutput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
+    double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY) * .5;
+    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX) * .5;
+    double turnSpeedOutput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX) * .5;
 
-    double frontSpeedOutput = Math.pow(frontSpeedInput,2);
-    double sideSpeedOutput = Math.pow(sideSpeedInput,2);
 
     drivetrain.swerveDrive(
-        frontSpeedOutput,
-        sideSpeedOutput,
+        frontSpeedInput,
+        sideSpeedInput,
         turnSpeedOutput,
         fieldOriented,
         new Translation2d(),

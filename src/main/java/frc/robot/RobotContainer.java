@@ -3,7 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.path.PathPlannerPath;
+
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj2.command.*;
@@ -49,7 +53,7 @@ public class RobotContainer {
      m_chooser.setDefaultOption("Leave Start Position", nonSpeakerCommand);
     m_chooser.addOption("Left Start", leftCommand);
     m_chooser.addOption("Middle Start", middleCommand);
-    m_chooser.addOption("Right Start", rightCommand);
+    m_chooser.addOption("Right Auto", rightCommand);
 
     SmartDashboard.putData("Autonomous Chooser", m_chooser);
   }
@@ -78,6 +82,15 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-      return m_chooser.getSelected();
+    try{
+        // Load the path you want to follow using its name in the GUI
+        PathPlannerPath path = PathPlannerPath.fromPathFile("Right Auto");
+
+        // Create a path following command using AutoBuilder. This will also trigger event markers.
+        return AutoBuilder.followPath(path);
+    } catch (Exception e) {
+        DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
+        return Commands.none();
+    }
   }
 }
