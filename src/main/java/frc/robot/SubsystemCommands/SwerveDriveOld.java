@@ -42,14 +42,47 @@ public class SwerveDriveOld extends Command {
     double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
     double turnSpeedOutput = turnSpeedInput;
 
-
-    drivetrain.swerveDrive(
-        frontSpeedOutput,
-        sideSpeedOutput,
-        turnSpeedOutput,
-        fieldOriented,
-        new Translation2d(),
-        true);
+    if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovUp)) {
+      drivetrain.swerveDrive(
+          1,
+          0,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovRight)) {
+      drivetrain.swerveDrive(
+          0,
+          1,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovDown)) {
+      drivetrain.swerveDrive(
+          -1,
+          0,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovLeft)) {
+      drivetrain.swerveDrive(
+          0,
+          -1,
+          0,
+          !fieldOriented,
+          new Translation2d(),
+          false);
+    } else {
+      drivetrain.swerveDrive(
+          frontSpeedOutput,
+          sideSpeedOutput,
+          turnSpeedOutput,
+          fieldOriented,
+          new Translation2d(),
+          true);
+    }
   }
 
   // Called once the command ends or is interrupted.
