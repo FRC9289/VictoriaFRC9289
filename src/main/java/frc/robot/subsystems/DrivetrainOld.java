@@ -100,14 +100,14 @@ public class DrivetrainOld extends SubsystemBase {
       getModulePositions(),
       new Pose2d());
 
-    // AutoBuilder.configureHolonomic(
-    //   this::getPose,
-    //   this::resetPose,
-    //   this::getRobotRelativeSpeeds,
-    //   this::driveRobotRelative,
-    //   SwerveConstants.AUTO_CONFIG,
-    //   () -> isRedAlliance(),
-    //   this);
+    AutoBuilder.configureHolonomic(
+      this::getPose,
+      this::resetPose,
+      this::getRobotRelativeSpeeds,
+      this::driveRobotRelative,
+      SwerveConstants.AUTO_CONFIG,
+      () -> isRedAlliance(),
+      this);
   }
 
   @Override

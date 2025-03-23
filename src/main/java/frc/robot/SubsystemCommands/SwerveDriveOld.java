@@ -29,11 +29,19 @@ public class SwerveDriveOld extends Command {
   @Override
   public void execute() {
     double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
-    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
-    double turnSpeedOutput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
+    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX);
+    double turnSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
 
-    double frontSpeedOutput = Math.pow(frontSpeedInput,2);
-    double sideSpeedOutput = Math.pow(sideSpeedInput,2);
+    //deadband
+    frontSpeedInput = Math.abs(frontSpeedInput) < 0.1 ? 0 : frontSpeedInput;
+    sideSpeedInput = Math.abs(sideSpeedInput) < 0.1 ? 0 : sideSpeedInput;
+    turnSpeedInput = Math.abs(turnSpeedInput) < 0.1 ? 0 : turnSpeedInput;
+
+    //Square scaling
+    double frontSpeedOutput = Math.copySign(frontSpeedInput * frontSpeedInput, frontSpeedInput);
+    double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
+    double turnSpeedOutput = turnSpeedInput;
+
 
     drivetrain.swerveDrive(
         frontSpeedOutput,
