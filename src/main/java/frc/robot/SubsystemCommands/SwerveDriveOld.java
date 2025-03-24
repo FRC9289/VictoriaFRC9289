@@ -42,6 +42,7 @@ public class SwerveDriveOld extends Command {
     double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
     double turnSpeedOutput = turnSpeedInput;
 
+    //D-pad control mapping
     if (RobotContainer.driverController.getPOV() == CommandConstants.PovUp) {
       drivetrain.swerveDrive(
           0.5,
@@ -75,6 +76,7 @@ public class SwerveDriveOld extends Command {
           new Translation2d(),
           false);
     } else {
+      //Regular field-centric moving mapped square scaled w/ respect to sign dw
       drivetrain.swerveDrive(
           frontSpeedOutput,
           sideSpeedOutput,
