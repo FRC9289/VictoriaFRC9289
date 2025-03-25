@@ -20,6 +20,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.SwerveConstants;
 
 public class DrivetrainOld extends SubsystemBase {
@@ -99,17 +100,7 @@ public class DrivetrainOld extends SubsystemBase {
       getHeadingRotation2d(),
       getModulePositions(),
       new Pose2d());
-
-    AutoBuilder.configureHolonomic(
-      this::getPose,
-      this::resetPose,
-      this::getRobotRelativeSpeeds,
-      this::driveRobotRelative,
-      SwerveConstants.AUTO_CONFIG,
-      () -> isRedAlliance(),
-      this);
   }
-
   @Override
   public void periodic() {
     poseEstimator.update(getHeadingRotation2d(), getModulePositions());

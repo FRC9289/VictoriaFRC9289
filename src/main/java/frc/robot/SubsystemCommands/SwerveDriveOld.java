@@ -32,11 +32,6 @@ public class SwerveDriveOld extends Command {
     double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX);
     double turnSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
 
-    //deadband
-    frontSpeedInput = Math.abs(frontSpeedInput) < 0.1 ? 0 : frontSpeedInput;
-    sideSpeedInput = Math.abs(sideSpeedInput) < 0.1 ? 0 : sideSpeedInput;
-    turnSpeedInput = Math.abs(turnSpeedInput) < 0.1 ? 0 : turnSpeedInput;
-
     //Square scaling
     double frontSpeedOutput = Math.copySign(frontSpeedInput * frontSpeedInput, frontSpeedInput);
     double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
@@ -50,7 +45,7 @@ public class SwerveDriveOld extends Command {
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
+          true);
     } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovRight) {
       drivetrain.swerveDrive(
           0,
@@ -58,7 +53,7 @@ public class SwerveDriveOld extends Command {
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
+          true);
     } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovDown) {
       drivetrain.swerveDrive(
           -0.5,
@@ -66,7 +61,7 @@ public class SwerveDriveOld extends Command {
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
+          true);
     } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovLeft) {
       drivetrain.swerveDrive(
           0,
@@ -74,7 +69,7 @@ public class SwerveDriveOld extends Command {
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
+          true);
     } else {
       //Regular field-centric moving mapped square scaled w/ respect to sign dw
       drivetrain.swerveDrive(
