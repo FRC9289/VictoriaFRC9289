@@ -19,7 +19,7 @@ public class RollerMethods extends Command {
     @Override
     public void execute() {
         if (button.getRawButton(CommandConstants.ButtonB)) {
-            RollerCommands command = new RollerCommands(.3, roller);
+            RollerCommands command = new RollerCommands(.25, roller);
             command.execute();
         } else if (button.getRawAxis(CommandConstants.AxisLeftTrigger) > CommandConstants.TriggerThreshold) {
             RollerCommands command = new RollerCommands(-1 * button.getRawAxis(CommandConstants.AxisLeftTrigger), roller);
@@ -28,7 +28,7 @@ public class RollerMethods extends Command {
             RollerCommands command = new RollerCommands(-.3, roller);
             command.execute();
         } else if (button.getRawButton(CommandConstants.ButtonA)) {
-            RollerCommands command = new RollerCommands(-.3, roller);
+            RollerCommands command = new RollerCommands(-.25, roller);
             command.execute();
         } else if (button.getRawAxis(CommandConstants.AxisRightTrigger) > CommandConstants.TriggerThreshold) {
             RollerCommands command = new RollerCommands(button.getRawAxis(CommandConstants.AxisRightTrigger), roller);
