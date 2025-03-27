@@ -112,40 +112,29 @@ public class DrivetrainOld extends SubsystemBase {
       getModulePositions(),
       new Pose2d());
 
-<<<<<<< HEAD
-    AutoBuilder.configure(
-            this::getPose, // Robot pose supplier
-            this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
-            this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-            (speeds, feedforwards) -> driveRobotRelative(speeds), // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
-            new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                    new PIDConstants(2.5, 0.08, 1.6), // Translation PID constants
-                    new PIDConstants(2.5, 0.08, 1.6) // Rotation PID constants
-            ),
-            config, // The robot configuration
-            () -> {
-              // Boolean supplier that controls when the path will be mirrored for the red alliance
-              // This will flip the path being followed to the red side of the field.
-              // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+    // AutoBuilder.configure(
+    //         this::getPose, // Robot pose supplier
+    //         this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
+    //         this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+    //         (speeds, feedforwards) -> driveRobotRelative(speeds), // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+    //         new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
+    //                 new PIDConstants(1.5, 0.08, .8), // Translation PID constants
+    //                 new PIDConstants(1.5, 0.08, .8) // Rotation PID constants
+    //         ),
+    //         config, // The robot configuration
+    //         () -> {
+    //           // Boolean supplier that controls when the path will be mirrored for the red alliance
+    //           // This will flip the path being followed to the red side of the field.
+    //           // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
 
-              var alliance = DriverStation.getAlliance();
-              if (alliance.isPresent()) {
-                return alliance.get() == DriverStation.Alliance.Red;
-              }
-              return false;
-            },
-            this // Reference to this subsystem to set requirements
-    );
-=======
-    AutoBuilder.configureHolonomic(
-      this::getPose,
-      this::resetPose,
-      this::getRobotRelativeSpeeds,
-      this::driveRobotRelative,
-      SwerveConstants.AUTO_CONFIG,
-      () -> isRedAlliance(),
-      this);
->>>>>>> f2da2401ffd295eeb1148b8409b02a7b5af78006
+    //           var alliance = DriverStation.getAlliance();
+    //           if (alliance.isPresent()) {
+    //             return alliance.get() == DriverStation.Alliance.Red;
+    //           }
+    //           return false;
+    //         },
+    //         this // Reference to this subsystem to set requirements
+    // );
   }
 
   @Override
@@ -159,9 +148,9 @@ public class DrivetrainOld extends SubsystemBase {
   public void swerveDrive(double frontSpeed, double sideSpeed, double turnSpeed, 
     boolean fieldOriented, Translation2d centerOfRotation, boolean deadband){ //Drive with rotational speed control w/ joystick
     if(deadband){
-      frontSpeed = Math.abs(frontSpeed) > 0.1 ? frontSpeed : 0;
-      sideSpeed = Math.abs(sideSpeed) > 0.1 ? sideSpeed : 0;
-      turnSpeed = Math.abs(turnSpeed) > 0.1 ? turnSpeed : 0;
+      frontSpeed = Math.abs(frontSpeed) > 0.05 ? frontSpeed : 0;
+      sideSpeed = Math.abs(sideSpeed) > 0.05 ? sideSpeed : 0;
+      turnSpeed = Math.abs(turnSpeed) > 0.05 ? turnSpeed : 0;
     }
 
     frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;

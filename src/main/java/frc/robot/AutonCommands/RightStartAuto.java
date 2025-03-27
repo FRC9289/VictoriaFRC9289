@@ -20,15 +20,14 @@ public class RightStartAuto extends SequentialCommandGroup{
     {
         
         addCommands(
-            // new SwerveDriveCommands(0.2,0,0).withTimeout(0.89),/*Original:0.89 */
-            // new SwerveDriveCommands(0, 0, -0.3).withTimeout(1.2),/*Original:1.2 */
+            new SwerveDriveCommands(0.2,0,0).withTimeout(0.89),/*Original:0.89 */
+            new SwerveDriveCommands(0, 0, -0.3).withTimeout(1.2),/*Original:1.2 */
 
-            // new SwerveDriveCommands(0.19, -0.2,0).withTimeout(2.3),/*Original:2.3 */
-            // new SwerveDriveCommands(0.19, -0.2,0).withTimeout(0.4),/*Original:0.4 */
-            // new SwerveDriveCommands(0,0, -0.2).withTimeout(0.4),/*Original:0.4 */
-            // new SwerveDriveCommands(0,0,0).withTimeout(1),
-            // new RollerCommands(-0.2, roller).withTimeout(5)
-            new PathPlannerAuto("Right Auto")
+            new SwerveDriveCommands(0.19, -0.2,0).withTimeout(2.3),/*Original:2.3 */
+            new SwerveDriveCommands(0.19, -0.2,0).withTimeout(0.4),/*Original:0.4 */
+            new SwerveDriveCommands(0,0, -0.2).withTimeout(0.4),/*Original:0.4 */
+            new SwerveDriveCommands(0,0,0).withTimeout(1),
+            new RollerCommands(-0.2, roller).withTimeout(5)
         );
 
 

@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -14,6 +15,7 @@ public class Arm extends SubsystemBase {
 
     // Provide all required parameters
     private SparkMax arm1 = new SparkMax(11, MotorType.kBrushless);
+    private RelativeEncoder arm_encoder;
 
     public Arm() {
         SparkMaxConfig config = new SparkMaxConfig();
@@ -29,11 +31,17 @@ public class Arm extends SubsystemBase {
             
         arm1.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
+        this.arm_encoder = arm1.getEncoder();
+        arm_encoder.setPosition(0.00);
     }
 
+    public RelativeEncoder getEncoder(){
+        return this.arm_encoder;
+    }
     public void move(double speed) {
         arm1.set(speed);
         SmartDashboard.putNumber("Arm Motor 11", arm1.get());
+        SmartDashboard.putNumber("Arm Position", arm_encoder.getPosition());
     }
 
     public void stop() {
@@ -43,6 +51,7 @@ public class Arm extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Arm Motor 11", arm1.get());
+        SmartDashboard.putNumber("Arm Position", arm_encoder.getPosition());
     }
 }
 

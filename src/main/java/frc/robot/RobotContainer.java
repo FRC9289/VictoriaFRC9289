@@ -4,6 +4,7 @@
 
 package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -30,7 +31,7 @@ public class RobotContainer {
   public static final Joystick driverController = new Joystick(0);
   public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
-  private static Arm arm = new Arm();
+  public static Arm arm = new Arm();
   private static Roller roller = new Roller();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
   //initializating commands to put up as choices
@@ -49,8 +50,10 @@ public class RobotContainer {
     configureBindings();
      m_chooser = new SendableChooser<>();
 
+     NamedCommands.registerCommand("Stop Modules", new SwerveDriveCommands(0, 0, 0));
+
     //set up choices for autonomous program
-     m_chooser.setDefaultOption("Leave Start Position", nonSpeakerCommand);
+    m_chooser.setDefaultOption("Leave Start Position", nonSpeakerCommand);
     m_chooser.addOption("Left Start", leftCommand);
     m_chooser.addOption("Middle Start", middleCommand);
     m_chooser.addOption("Right Auto", rightCommand);
@@ -73,7 +76,7 @@ public class RobotContainer {
     resetHeading_Start.onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
     hang.setDefaultCommand(new HangMethods(hang, driverController));
     arm.setDefaultCommand(new ArmMethods(arm, driverController)); 
-    roller.setDefaultCommand(new RollerMethods(roller, driverController));
+    roller.setDefaultCommand(new RollerMethods(roller, driverController, arm));
   }
 
   /**
@@ -82,15 +85,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    try{
-        // Load the path you want to follow using its name in the GUI
-        PathPlannerPath path = PathPlannerPath.fromPathFile("Right Auto");
-
-        // Create a path following command using AutoBuilder. This will also trigger event markers.
-        return AutoBuilder.followPath(path);
-    } catch (Exception e) {
-        DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
-        return Commands.none();
-    }
+    return m_chooser.getSelected();
   }
 }

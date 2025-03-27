@@ -14,7 +14,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
-import HolonomicPathFollowerConfig;
+// import HolonomicPathFollowerConfig;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -100,16 +100,16 @@ public final class Constants {
     public static final double AUTO_kP_TRANSLATION = 0.4;
     public static final double AUTO_kP_ROTATION = 2.4;
 
-    public static final HolonomicDriveController AUTO_CONFIG = new HolonomicDriveController(
-      new PIDController(AUTO_kP_TRANSLATION, 0.0, 0.0),
-      new PIDCo(AUTO_kP_ROTATION, 0.0, 0.0),
-      DRIVETRAIN_MAX_SPEED, // Max module speed, in m/s
-      DRIVE_BASE_RADIUS,
-      new ReplanningConfig());
+    // public static final HolonomicDriveController AUTO_CONFIG = new HolonomicDriveController(
+    //   new PIDController(AUTO_kP_TRANSLATION, 0.0, 0.0),
+    //   new PIDCo(AUTO_kP_ROTATION, 0.0, 0.0),
+    //   DRIVETRAIN_MAX_SPEED, // Max module speed, in m/s
+    //   DRIVE_BASE_RADIUS,
+    //   new ReplanningConfig());
 
-    public static final double AUTO_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED / 1.5;
-    public static final double AUTO_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED / 2.0;
-    public static final double AUTO_DRIVE_MAX_ACCELERATION = 3;
-    public static final double AUTO_DRIVE_MAX_ANGULAR_ACCELERATION = Math.PI;
+    // public static final double AUTO_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED / 1.5;
+    // public static final double AUTO_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED / 2.0;
+    // public static final double AUTO_DRIVE_MAX_ACCELERATION = 3;
+    // public static final double AUTO_DRIVE_MAX_ANGULAR_ACCELERATION = Math.PI;
  }
 }
