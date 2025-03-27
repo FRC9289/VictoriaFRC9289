@@ -28,43 +28,50 @@ public class SwerveDriveOld extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY) *.8;
-    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX) *.8;
-    double turnSpeedOutput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX) *.8;
+    double frontSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickY);
+    double sideSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisLeftStickX);
+    double turnSpeedInput = RobotContainer.driverController.getRawAxis(CommandConstants.AxisRightStickX);
 
-    if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovUp)) {
+    //Square scaling
+    double frontSpeedOutput = Math.copySign(frontSpeedInput * frontSpeedInput, frontSpeedInput);
+    double sideSpeedOutput = Math.copySign(sideSpeedInput * sideSpeedInput, sideSpeedInput);
+    double turnSpeedOutput = turnSpeedInput;
+
+    //D-pad control mapping
+    if (RobotContainer.driverController.getPOV() == CommandConstants.PovUp) {
       drivetrain.swerveDrive(
-          1,
+          0.5,
           0,
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovRight)) {
+          true);
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovRight) {
       drivetrain.swerveDrive(
           0,
-          1,
+          0.5,
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovDown)) {
+          true);
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovDown) {
       drivetrain.swerveDrive(
-          -1,
+          -0.5,
           0,
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
-    } else if (RobotContainer.driverController.getRawButtonPressed(CommandConstants.PovLeft)) {
+          true);
+    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovLeft) {
       drivetrain.swerveDrive(
           0,
-          -1,
+          -0.5,
           0,
           !fieldOriented,
           new Translation2d(),
-          false);
+          true);
     } else {
+      //Regular field-centric moving mapped square scaled w/ respect to sign dw
       drivetrain.swerveDrive(
         frontSpeedInput,
         sideSpeedInput,
